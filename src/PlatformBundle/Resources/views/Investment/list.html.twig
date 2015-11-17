@@ -1,0 +1,29 @@
+{% extends "PlatformBundle::layout.html.twig" %}
+{% trans_default_domain 'PlatformBundle' %}
+
+{% block body_content %}
+    <div class="container">
+        {% if investments %}
+            <table class="table table-bordered table-hover">
+                <thead>
+                <tr>
+                    <th>{{ 'investment.list.id'|trans }}</th>
+                    <th>{{ 'investment.list.amount'|trans }}</th>
+                    <th>{{ 'investment.list.loan'|trans }}</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for investment in investments %}
+                    <tr>
+                        <td>{{ investment.id }}</td>
+                        <td>{{ investment.amount }}</td>
+                        <td>{{ 'investment.list.id_name'|trans|upper }} {{ investment.loan.id }}, {{ 'investment.list.amount'|trans|capitalize }} {{ investment.loan.amount }}, {{ 'investment.list.available_for_investments'|trans|capitalize }} {{ investment.loan.availableForInvestments }}
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <h4>{{ 'investment.list.empty'|trans }}</h4>
+        {% endif %}
+    </div>
+{% endblock %}

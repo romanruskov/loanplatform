@@ -1,0 +1,42 @@
+{% extends "PlatformBundle::layout.html.twig" %}
+{% trans_default_domain 'PlatformBundle' %}
+
+{% block body_content %}
+    <div class="container">
+        {{ form_start(form, {"attr": {"class": "form-horizontal form-platform", "id": "login"}}) }}
+            <fieldset>
+
+                <div id="legend">
+                    <legend class="">{{ 'auth.login.login'|trans }}</legend>
+                </div>
+
+                {% if error %}
+                    <div class="error-cont">
+                        <p>{{ error.messageKey|trans(error.messageData) }}</p>
+                    </div>
+                {% endif %}
+
+                <div class="control-group">
+                    {{ form_label(form.username, 'auth.login.username_label', {"label_attr": {"class": "control-label"}}) }}
+                    {{ form_errors(form.username) }}
+                    {{ form_widget(form.username, {"attr": {"class": "input-xlarge"}}) }}
+                    <p class="help-block">{{ 'auth.login.username_help'|trans }}</p>
+                </div>
+
+                <div class="control-group">
+                    {{ form_label(form.plainPassword, 'auth.login.password_label', {"label_attr": {"class": "control-label"}}) }}
+                    {{ form_errors(form.plainPassword) }}
+                    {{ form_widget(form.plainPassword, {"attr": {"class": "input-xlarge"}}) }}
+                    <p class="help-block">{{ 'auth.login.password_help'|trans }}</p>
+                </div>
+
+                <div class="control-group">
+                    <div class="controls">
+                        <button class="btn btn-success">{{ 'auth.login.login'|trans }}</button>
+                    </div>
+                </div>
+
+            </fieldset>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

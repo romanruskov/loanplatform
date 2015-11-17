@@ -1,0 +1,61 @@
+body {
+    padding: 70px 15px;
+}
+
+.nav-right {
+    float: right;
+}
+
+.nav-right .locale-switcher {
+    margin: 14px 0 0 14px;
+}
+
+.nav-right .locale-switcher select {
+    font-size: 11px;
+    height: 23px;
+}
+
+.form-platform .control-group > input {
+    display: block;
+    min-width: 200px;
+}
+
+.form-platform .control-group > img {
+    display: block;
+}
+
+.form-platform .flash-notice,
+.form-platform .error-cont {
+    padding: 5px 10px;
+    margin: 5px 0;
+    border-left: 5px solid #00a341;
+}
+
+.form-platform .error-cont {
+    border-left: 5px solid #ce4844;
+}
+
+.form-platform .error-cont p {
+    margin: 0;
+}
+
+.form-platform .table th {
+    white-space: nowrap;
+}
+
+.form-platform .table td:last-child {
+    text-align: center;
+}
+
+.form-platform .placeholder .nothing,
+.form-platform .placeholder .loading {
+    display: none;
+}
+
+.form-platform .control-loan-search {
+    float: right;
+}
+
+.form-platform .control-loan-search input {
+    width: 250px !important;
+}

@@ -1,0 +1,9 @@
+loan:
+  type: rest
+  resource: "PlatformBundle:Rest/Loan"
+  name_prefix:  platform_api_
+
+investor:
+  type: rest
+  resource: "PlatformBundle:Rest/Investor"
+  name_prefix:  platform_api_

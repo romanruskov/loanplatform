@@ -1,0 +1,76 @@
+{% extends "PlatformBundle::layout.html.twig" %}
+{% trans_default_domain 'PlatformBundle' %}
+
+{% block body_content %}
+    <div class="container">
+        {{ form_start(form, {"attr": {"class": "form-horizontal form-platform", "id": "platform_investor"}}) }}
+        <fieldset>
+
+            <div id="legend">
+                <legend class="">{{ 'investor.profile.profile'|trans }}</legend>
+            </div>
+
+            {% for flash_message in app.session.flashbag.get('notice') %}
+                <div class="flash-notice">{{ flash_message }}</div>
+            {% endfor %}
+
+            {{ form_errors(form) }}
+
+            <div class="control-group">
+                {{ form_label(form.username, 'investor.profile.username_label', {"label_attr": {"class": "control-label"}}) }}
+                {{ form_errors(form.username) }}
+                {{ form_widget(form.username, {"attr": {"class": "input-xlarge"}}) }}
+                <p class="help-block">{{ 'investor.profile.username_help'|trans }}</p>
+            </div>
+
+            <div class="control-group">
+                {{ form_label(form.email, 'investor.profile.email_label', {"label_attr": {"class": "control-label"}}) }}
+                {{ form_errors(form.email) }}
+                {{ form_widget(form.email, {"attr": {"class": "input-xlarge"}}) }}
+                <p class="help-block">{{ 'investor.profile.email_help'|trans }}</p>
+            </div>
+
+            <div class="control-group">
+                {{ form_label(form.availableForInvestments, 'investor.profile.available_for_investments_label', {"label_attr": {"class": "control-label"}}) }}
+                {{ form_errors(form.availableForInvestments) }}
+                {{ form_widget(form.availableForInvestments, {"attr": {"class": "input-xlarge"}}) }}
+                <p class="help-block">{{ 'investor.profile.available_for_investments_help'|trans }}</p>
+            </div>
+
+            <div class="control-group">
+                {{ form_label(form.avatarFile, 'investor.profile.avatar_label', {"label_attr": {"class": "control-label"}}) }}
+                {{ form_errors(form.avatarFile) }}
+
+                {% if app.user.avatar.url or not app.user.avatar.ready %}
+                    {% if app.user.avatar.ready %}
+                        <img src="{{ asset(app.user.avatar.url) }}" alt="avatar"/>
+                    {% else %}
+                        <div class="loading-avatar" data-api="{{ path('platform_api_get_investor') }}">
+                            <img src="{{ asset('bundles/platform/img/loading.gif') }}" alt="loading"/>
+                        </div>
+                    {% endif %}
+                {% endif %}
+
+                {{ form_widget(form.avatarFile, {"attr": {"class": "input-xlarge"}}) }}
+                <p class="help-block">{{ 'investor.profile.avatar_help'|trans }}</p>
+            </div>
+
+            <div class="control-group">
+                <div class="controls">
+                    <button class="btn btn-success">{{ 'investor.profile.save'|trans }}</button>
+                </div>
+            </div>
+
+        </fieldset>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
+
+{% block footer_js %}
+    {{ parent() }}
+    <script type="text/javascript">
+        $(function() {
+            InvestorProfileApp.init();
+        });
+    </script>
+{% endblock %}

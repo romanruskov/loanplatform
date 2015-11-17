@@ -1,0 +1,59 @@
+{% extends "PlatformBundle::layout.html.twig" %}
+{% trans_default_domain 'PlatformBundle' %}
+
+{% block body_content %}
+    <div class="container">
+        {{ form_start(form, {"attr": {"class": "form-horizontal form-platform", "id": "register"}}) }}
+            <fieldset>
+
+                <div id="legend">
+                    <legend class="">{{ 'auth.register.register'|trans }}</legend>
+                </div>
+
+                {{ form_errors(form) }}
+
+                <div class="control-group">
+                    {{ form_label(form.username, 'auth.register.username_label', {"label_attr": {"class": "control-label"}}) }}
+                    {{ form_errors(form.username) }}
+                    {{ form_widget(form.username, {"attr": {"class": "input-xlarge"}}) }}
+                    <p class="help-block">{{ 'auth.register.username_help'|trans }}</p>
+                </div>
+
+                <div class="control-group">
+                    {{ form_label(form.email, 'auth.register.email_label', {"label_attr": {"class": "control-label"}}) }}
+                    {{ form_errors(form.email) }}
+                    {{ form_widget(form.email, {"attr": {"class": "input-xlarge"}}) }}
+                    <p class="help-block">{{ 'auth.register.email_help'|trans }}</p>
+                </div>
+
+                <div class="control-group">
+                    {{ form_label(form.plainPassword.first, 'auth.register.password_label', {"label_attr": {"class": "control-label"}}) }}
+                    {{ form_errors(form.plainPassword.first) }}
+                    {{ form_widget(form.plainPassword.first, {"attr": {"class": "input-xlarge"}}) }}
+                    <p class="help-block">{{ 'auth.register.password_help'|trans }}</p>
+                </div>
+
+                <div class="control-group">
+                    {{ form_label(form.plainPassword.second, 'auth.register.password_confirm_label', {"label_attr": {"class": "control-label"}}) }}
+                    {{ form_errors(form.plainPassword.second) }}
+                    {{ form_widget(form.plainPassword.second, {"attr": {"class": "input-xlarge"}}) }}
+                    <p class="help-block">{{ 'auth.register.password_confirm_help'|trans }}</p>
+                </div>
+
+                <div class="control-group">
+                    {{ form_label(form.availableForInvestments, 'auth.register.available_for_investments_label', {"label_attr": {"class": "control-label"}}) }}
+                    {{ form_errors(form.availableForInvestments) }}
+                    {{ form_widget(form.availableForInvestments, {"attr": {"class": "input-xlarge"}}) }}
+                    <p class="help-block">{{ 'auth.register.available_for_investments_help'|trans }}</p>
+                </div>
+
+                <div class="control-group">
+                    <div class="controls">
+                        <button class="btn btn-success">{{ 'auth.register.register'|trans }}</button>
+                    </div>
+                </div>
+
+            </fieldset>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}

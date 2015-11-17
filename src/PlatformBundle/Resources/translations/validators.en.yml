@@ -1,0 +1,34 @@
+loan:
+  amount:
+    type: The value {{ value }} is not a valid {{ type }}"
+    min_range: Amount cannot be less than {{ limit }}"
+    max_range: Amount cannot be greater than {{ limit }}"
+  available_for_investments:
+    type: Amount {{ value }} is not a valid {{ type }}"
+    min_range: Amount cannot be less than {{ limit }}"
+    max_range: Amount cannot be greater than {{ limit }}"
+
+investment:
+  amount:
+    type: The value {{ value }} is not a valid {{ type }}
+    min_range: Amount cannot be less than {{ limit }}
+    max_range: Amount cannot be greater than {{ limit }}
+
+investor:
+  email:
+    taken: Email already taken
+    min_length: Your email must be at least {{ limit }} characters long
+    max_length: Your email cannot be longer than {{ limit }} characters
+  username:
+    taken: Username already taken
+    min_len: Your username must be at least {{ limit }} characters long
+    max_len: Your username cannot be longer than {{ limit }} characters
+    regex: Username can contain any letters or numbers, without spaces
+  available_for_investments:
+    type: Amount {{ value }} is not a valid {{ type }}
+    min_value: Amount cannot be less than {{ limit }}
+    max_value: Amount cannot be greater than {{ limit }}
+
+avatar:
+  file:
+    invalid: Please upload a valid image

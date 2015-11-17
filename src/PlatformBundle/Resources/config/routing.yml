@@ -1,0 +1,37 @@
+platform_loan_list_page:
+    path:     /
+    defaults: { _controller: PlatformBundle:Loan:list, trailingSlash : "/" }
+    requirements: { trailingSlash : "[/]{0,1}" }
+    methods:  [GET, POST]
+
+platform_auth_register_page:
+    path:     /auth/register{trailingSlash}
+    defaults: { _controller: PlatformBundle:Auth:register, trailingSlash : "/" }
+    requirements: { trailingSlash : "[/]{0,1}" }
+    methods:  [GET, POST]
+
+platform_auth_login_check_page:
+    path:     /auth/login/check
+    methods:  [POST]
+
+platform_auth_login_page:
+    path:     /auth/login{trailingSlash}
+    defaults: { _controller: PlatformBundle:Auth:login, trailingSlash : "/" }
+    requirements: { trailingSlash : "[/]{0,1}" }
+    methods:  [GET]
+
+platform_auth_logout_page:
+    path:     /auth/logout
+    methods:  [GET]
+
+platform_investment_list_page:
+    path:     /investment/list{trailingSlash}
+    defaults: { _controller: PlatformBundle:Investment:list, trailingSlash : "/" }
+    requirements: { trailingSlash : "[/]{0,1}" }
+    methods:  [GET]
+
+platform_investor_profile_page:
+    path:     /investor/profile{trailingSlash}
+    defaults: { _controller: PlatformBundle:Investor:profile, trailingSlash : "/" }
+    requirements: { trailingSlash : "[/]{0,1}" }
+    methods:  [GET, POST]

@@ -1,0 +1,40 @@
+security:
+    encoders:
+        PlatformBundle\Entity\Investor:
+            algorithm: bcrypt
+
+    providers:
+        platform_user_provider:
+            entity:
+                class: PlatformBundle:Investor
+                property: username
+
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        platform_area:
+            pattern: ^/
+            anonymous: true
+            provider: platform_user_provider
+            form_login:
+                login_path: platform_auth_login_page
+                check_path: platform_auth_login_check_page
+                username_parameter: platform_auth_login[username]
+                password_parameter: platform_auth_login[plainPassword]
+                default_target_path: platform_loan_list_page
+                always_use_default_target_path: true
+            logout:
+                path: /auth/logout
+                invalidate_session: true
+                success_handler: platform.logout_success_handler
+
+    access_control:
+        - { path: platform_auth_login_page, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: platform_auth_register_page, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: platform_auth_logout_page, role: ROLE_INVESTOR }
+        - { path: ^/loan, role: ROLE_INVESTOR }
+        - { path: ^/investment, role: ROLE_INVESTOR }
+        - { path: ^/investor, role: ROLE_INVESTOR }
+        - { path: ^/$, role: ROLE_INVESTOR }

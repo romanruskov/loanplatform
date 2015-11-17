@@ -1,0 +1,34 @@
+loan:
+  amount:
+    type: Сумма {{ value }} не соответствует типу {{ type }}
+    min_range: Сумма должна быть не меньше {{ limit }}
+    max_range: Сумма должна быть не больше {{ limit }}
+  available_for_investments:
+    type: Сумма {{ value }} не соответствует типу {{ type }}
+    min_range: Сумма должна быть не меньше {{ limit }}
+    max_range: Сумма должна быть не больше {{ limit }}
+
+investment:
+  amount:
+    type: Сумма {{ value }} не соответствует типу {{ type }}
+    min_range: Сумма должна быть не меньше {{ limit }}
+    max_range: Сумма должна быть не больше {{ limit }}
+
+investor:
+  email:
+    taken: Адрес э-почты уже занят
+    min_length: Адрес э-почты должен быть не короче {{ limit }} символов
+    max_length: Адрес э-почты должен быть не длинее {{ limit }} символов
+  username:
+    taken: Имя пользователя уже занято
+    min_len: Имя пользователя должно быть не короче {{ limit }} символов
+    max_len: Имя пользователя должно быть не длиннее {{ limit }} символов
+    regex: Имя пользователя может содержать буквы и цифры без пробелов
+  available_for_investments:
+    type: Сумма {{ value }} не соответствует типу {{ type }}
+    min_value: Сумма должна быть не меньше {{ limit }}
+    max_value: Сумма должна быть не больше {{ limit }}
+
+avatar:
+  file:
+    invalid: Пожалуйста, выберите изображение

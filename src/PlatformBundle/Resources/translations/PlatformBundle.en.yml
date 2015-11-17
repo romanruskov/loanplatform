@@ -1,0 +1,72 @@
+layout:
+  page:
+    title: Loan platform
+  nav:
+    toggle: Toggle navigation
+    project: Loan platform
+    loans: Loans
+    investments: Investments
+    register: Register
+    login: Login
+    profile: Profile
+    logout: Logout
+    locale_en: English
+    locale_ru: Russian
+
+auth:
+  login:
+    login: Login
+    username_label: User Name
+    username_help: Username can contain any letters or numbers, without spaces
+    password_label: Password
+    password_help: Password should be at least 4 characters
+  register:
+    register: Register
+    username_label: User Name
+    username_help: Username can contain any letters or numbers, without spaces
+    email_label: E-mail
+    email_help: Please provide your E-mail
+    password_label: Password
+    password_help: Password should be at least 4 characters
+    password_confirm_label: Password (confirm)
+    password_confirm_help: Please confirm password
+    available_for_investments_label: Available for investments
+    available_for_investments_help: Float amount available for investments
+
+loan:
+  list:
+    available_for_investments: Available for investments
+    invest: Invest
+    id: '#'
+    amount: Amount
+    description: Description
+    nothing: Nothing to show
+    loading: Loading data
+    search_placeholder: Start typing to filter loans
+    select_a_loan: Please select a loan
+    amount_not_available: Amount is not available for investment
+
+investment:
+  list:
+    id: '#'
+    amount: Amount
+    loan: Loan
+    id_name: Id
+    available_for_investments: Available for investments
+    empty: Investment list is empty
+
+investor:
+  profile:
+    profile: Profile
+    username_label: User Name
+    username_help: Username can contain any letters or numbers, without spaces
+    email_label: E-mail
+    email_help: Please provide your E-mail
+    save: Save
+    saved: Your changes were saved
+    available_for_investments_label: Available for investments
+    available_for_investments_help: Float amount available for investments
+    avatar_label: Avatar
+    avatar_help: Any image with size less than 2mb
+
+"Invalid credentials.": Invalid credentials.

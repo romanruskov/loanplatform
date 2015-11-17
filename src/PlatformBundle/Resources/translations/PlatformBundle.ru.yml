@@ -1,0 +1,72 @@
+layout:
+  page:
+    title: Платформа займов
+  nav:
+    toggle: Переключить навигацию
+    project: Платформа займов
+    loans: Займы
+    investments: Вложения
+    register: Регистрация
+    login: Авторизация
+    profile: Профиль
+    logout: Выйти
+    locale_en: Английский
+    locale_ru: Русский
+
+auth:
+  login:
+    login: Авторизация
+    username_label: Имя пользователя
+    username_help: Имя пользователя может содержать буквы и цифры без пробелов
+    password_label: Пароль
+    password_help: Пароль должен быть не короче 4х символов
+  register:
+    register: Регистрация
+    username_label: Имя пользователя
+    username_help: Имя пользователя может содержать буквы и цифры без пробелов
+    email_label: Э-почта
+    email_help: Укажите адрес вашей э-почты
+    password_label: Пароль
+    password_help: Пароль должен быть не короче 4х символов
+    password_confirm_label: Пароль (повторить)
+    password_confirm_help: Пожалуйста, повторите пароль
+    available_for_investments_label: Доступно для вложений
+    available_for_investments_help: Сумма доступная для вложений
+
+loan:
+  list:
+    available_for_investments: Доступно для вложений
+    invest: Вложить
+    id: '#'
+    amount: Сумма
+    description: Описание
+    nothing: Результаты не найдены
+    loading: Идёт загрузка данных
+    search_placeholder: Отфильтровать список
+    select_a_loan: Выберите займ
+    amount_not_available: Сумма для вложения недоступна
+
+investment:
+  list:
+    id: '#'
+    amount: Сумма
+    loan: Займ
+    id_name: Id
+    available_for_investments: Доступно для вложений
+    empty: Список вложений пуст
+
+investor:
+  profile:
+    profile: Профиль
+    username_label: Имя пользователя
+    username_help: Имя пользователя может содержать буквы и цифры без пробелов
+    email_label: Э-почта
+    email_help: Укажите адрес вашей э-почты
+    save: Сохранить
+    saved: Успешно сохранено
+    available_for_investments_label: Доступно для вложений
+    available_for_investments_help: Сумма доступная для вложений
+    avatar_label: Аватар
+    avatar_help: Любое изображение размером до 2мб
+
+"Invalid credentials.": Имя пользователя или пароль неправильные.

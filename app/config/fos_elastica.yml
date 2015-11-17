@@ -1,0 +1,41 @@
+fos_elastica:
+    clients:
+        #default: { host: %elastica_host%, port: %elastica_port% }
+        default:
+            connections:
+                - url: %elastica_url%
+    indexes:
+        platform:
+            client: default
+            settings:
+                index:
+                    analysis:
+                        analyzer:
+                            custom_analyzer:
+                                type: custom
+                                tokenizer: whitespace
+                                filter: [lowercase, asciifolding, word_delimiter, snowball]
+                        filter:
+                            ngram_filter:
+                                type: "nGram"
+                                min_gram: 2
+                                max_gram: 16
+            types:
+                loan:
+                    mappings:
+                        id:
+                          type: integer
+                        amount:
+                          type: float
+                        description:
+                          type: string
+                          boost: 10
+                          analyzer: custom_analyzer
+                          filter: ngram_filter
+                    persistence:
+                        driver: orm
+                        model: PlatformBundle\Entity\Loan
+                        provider: ~
+                        finder: ~
+                        listener:
+                          logger: true

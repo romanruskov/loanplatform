@@ -1,0 +1,11 @@
+platform:
+  resource: "@PlatformBundle/Resources/config/routing.yml"
+  prefix:   /
+
+rest:
+  resource: "@PlatformBundle/Resources/config/routing_rest.yml"
+  prefix:   /api/v1
+  type:     rest
+
+#_liip_imagine:
+#  resource: "@LiipImagineBundle/Resources/config/routing.xml"

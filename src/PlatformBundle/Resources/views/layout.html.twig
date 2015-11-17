@@ -1,0 +1,97 @@
+{% trans_default_domain 'PlatformBundle' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{% block title %}{{ 'layout.page.title'|trans }}{% endblock %}</title>
+
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+
+    {% block head_css %}
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css"/>
+        <link href="{{ asset('bundles/platform/css/app.css') }}" rel="stylesheet" />
+    {% endblock %}
+
+    {% block head_js %}
+        <!--[if lt IE 9]
+            <script src="//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+            <script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    {% endblock %}
+</head>
+<body>
+    {% block nav %}
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">{{ 'layout.nav.toggle'|trans }}</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="{{ path('platform_loan_list_page') }}">{{ 'layout.nav.project'|trans }}</a>
+                </div>
+                <div id="navbar" class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                            <li{% if(nav_page == 'platform_loan_list') %} class="active"{% endif %}>
+                                <a href="{{ path('platform_loan_list_page') }}">{{ 'layout.nav.loans'|trans }}</a>
+                            </li>
+                            <li{% if(nav_page == 'platform_investment_list') %} class="active"{% endif %}>
+                                <a href="{{ path('platform_investment_list_page') }}">{{ 'layout.nav.investments'|trans }}</a>
+                            </li>
+                        {% else %}
+                            <li{% if(nav_page == 'platform_auth_register') %} class="active"{% endif %}>
+                                <a href="{{ path('platform_auth_register_page') }}">{{ 'layout.nav.register'|trans }}</a>
+                            </li>
+                            <li{% if(nav_page == 'platform_auth_login') %} class="active"{% endif %}>
+                                <a href="{{ path('platform_auth_login_page') }}">{{ 'layout.nav.login'|trans }}</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+
+                    <div class="nav-right">
+                        <ul class="nav navbar-nav">
+                            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                                <li{% if(nav_page == 'platform_investor_profile') %} class="active"{% endif %}>
+                                    <a href="{{ path('platform_investor_profile_page') }}">{{ 'layout.nav.profile'|trans }}</a>
+                                </li>
+                                <li class="logout">
+                                    <a href="{{ path('platform_auth_logout_page') }}">{{ 'layout.nav.logout'|trans }}</a>
+                                </li>
+                            {% endif %}
+                            <li class="locale-switcher">
+                                <select name="locale" class="form-control">
+                                    {% for locale in locale_supported %}
+                                        <option value="{{ locale }}"{% if app.request.locale == locale %} selected="selected"{% endif %}>{{ ('layout.nav.locale_' ~ locale)|trans }}</option>
+                                    {% endfor %}
+                                </select>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </nav>
+    {% endblock %}
+
+    {% block body_content %}{% endblock %}
+
+    {% block footer_js %}
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+        <script src="//maxcdn.bootstrapcdn.com/js/ie10-viewport-bug-workaround.js"></script>
+        <script src="{{ asset('bundles/platform/js/app.js') }}"></script>
+        <script type="text/javascript">
+            $(function() {
+                LocaleSwitcherApp.init();
+            });
+        </script>
+    {% endblock %}
+</body>
+</html>

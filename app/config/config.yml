@@ -1,0 +1,114 @@
+imports:
+    - { resource: security.yml }
+    - { resource: services.yml }
+    - { resource: fos_elastica.yml }
+    - { resource: @PlatformBundle/Resources/config/services.yml }
+
+parameters:
+  locale: en
+  locale_supported: [en, ru]
+  fos_elastica.client.class: PlatformBundle\Client\ElasticaClient
+  liip_imagine.meta_data.reader.class: Imagine\Image\Metadata\DefaultMetadataReader
+
+framework:
+    translator:   { fallback: "%locale%" }
+    secret:       "%secret%"
+    router:
+        resource: "%kernel.root_dir%/config/routing.yml"
+        strict_requirements: ~
+    form:             ~
+    csrf_protection:  ~
+    validation:       { enable_annotations: true }
+    templating:
+        engines:      ['twig']
+    default_locale:   "%locale%"
+    trusted_hosts:    ~
+    trusted_proxies:  ~
+    session:
+        handler_id:   ~
+    fragments:        ~
+    http_method_override: true
+
+twig:
+    debug:            "%kernel.debug%"
+    strict_variables: "%kernel.debug%"
+    form:
+        resources:
+            - 'PlatformBundle:Form:fields.html.twig'
+    globals:
+      locale_supported: "%locale_supported%"
+
+assetic:
+    debug:          "%kernel.debug%"
+    use_controller: false
+    bundles:        [ ]
+    filters:
+        cssrewrite: ~
+
+doctrine:
+    dbal:
+        driver:   pdo_pgsql
+        host:     "%database_host%"
+        port:     "%database_port%"
+        dbname:   "%database_name%"
+        user:     "%database_user%"
+        password: "%database_password%"
+        charset:  UTF8
+    orm:
+        auto_generate_proxy_classes: "%kernel.debug%"
+        naming_strategy: doctrine.orm.naming_strategy.underscore
+        auto_mapping: true
+
+swiftmailer:
+    transport: "%mailer_transport%"
+    host:      "%mailer_host%"
+    username:  "%mailer_user%"
+    password:  "%mailer_password%"
+    spool:     { type: memory }
+
+fos_rest:
+    allowed_methods_listener: true
+    param_fetcher_listener: true
+    view:
+        view_response_listener: force
+        formats:
+            json: true
+        default_engine: twig
+        exception_wrapper_handler: null
+    service:
+        exception_handler: platform.view.exception_wrapper_handler
+    exception:
+        enabled: true
+    routing_loader:
+        default_format: json
+        include_format: false
+
+liip_imagine:
+    resolvers:
+       default:
+          web_path: ~
+    filter_sets:
+        cache: ~
+        thumb_100x100:
+            quality: 100
+            filters:
+                thumbnail: { size: [100, 100], mode: outbound }
+
+old_sound_rabbit_mq:
+    connections:
+        default:
+            host:     '%rabbitmq_host%'
+            port:     '%rabbitmq_port%'
+            user:     '%rabbitmq_user%'
+            password: '%rabbitmq_password%'
+            vhost:    '%rabbitmq_vhost%'
+    producers:
+        generate_thumbnail:
+            connection:       default
+            exchange_options: {name: 'platform', type: direct}
+    consumers:
+        generate_thumbnail:
+            connection:       default
+            exchange_options: {name: 'platform', type: direct}
+            queue_options:    {name: 'thumbnail'}
+            callback:         platform.generate_thumbnail_consumer
